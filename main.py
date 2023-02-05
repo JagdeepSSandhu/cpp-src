@@ -20,7 +20,7 @@ def home():
     current_date = date.today()
     return render_template('home.html', now=current_date)
 
-@app.route('/mark', methods=['POST'])
+@app.route('/test', methods=['POST'])
 def mark():
     event = request.form['event'].strip()
     email = request.form['email'].lower().strip()
@@ -49,7 +49,8 @@ def handleEmail(email, event):
         for row in values:
             if email == row[1].lower().strip():
                 record_with_id(event, str(row[0]))
-                return 'Thank you ' + row[2] + "! Your attendance is recorded. <br/> Your CPP ID is <b>" + str(row[0]) + "</b>."
+                #return 'Thank you ' + row[2] + "! Your attendance is recorded. <br/> Your CPP ID is <b>" + str(row[0]) + "</b>."
+                return render_template('do_test.html')
     else:
         print("Got a child case")
         return render_template('child.html', email1=email, event1=event)
