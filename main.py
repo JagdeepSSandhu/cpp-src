@@ -49,8 +49,10 @@ def handleEmail(email, event):
         for row in values:
             if email == row[1].lower().strip():
                 record_with_id(event, str(row[0]))
-                #return 'Thank you ' + row[2] + "! Your attendance is recorded. <br/> Your CPP ID is <b>" + str(row[0]) + "</b>."
-                return render_template('do_test.html')
+                if (event == 'Feb 5 - English Assessment Exam'):
+                    return render_template('do_english_test.html')
+                else:
+                    return render_template('do_math_test.html')
     else:
         print("Got a child case")
         return render_template('child.html', email1=email, event1=event)
